@@ -167,16 +167,16 @@ const sortAPI = {
   
   // функция разделитель
 partition: (items, left, right) => {
-  var pivot = items[Math.floor((right + left) / 2)]['color'],
+  var pivot = items[Math.floor((right + left) / 2)],
       i = left,
       j = right;
       console.log(pivot);
   while (i <= j) {
-      while (items[i]['color'] < pivot) {
+      while (items[i]['color'] < pivot['color']) {
           i++;
           console.log(items[i]['color']);
       }
-      while (items[j]['color'] > pivot) {
+      while (items[j]['color'] > pivot['color']) {
           j--;
           console.log(items[i]['color']);
       }
@@ -194,13 +194,13 @@ swap: (items, firstIndex, secondIndex) => {
   items[firstIndex] = items[secondIndex];
   items[secondIndex] = temp;
 },
-  quickSort(arr, comparation) {
+  quickSort(arr, left,right) {
        // TODO: допишите функцию быстрой сортировки
     var index;
     if (arr.length > 1) {
       console.log(arr.length)
-        left = typeof left != "string" ? 0 : left;
-        right = typeof right != "string" ? arr.length - 1 : right;
+        left = typeof left != "number" ? 0 : left;
+        right = typeof right != "number" ? arr.length - 1 : right;
         index = sortAPI.partition(arr, left, right);
         if (left < index - 1) {
           sortAPI.quickSort(arr, left, index - 1);
@@ -221,54 +221,7 @@ swap: (items, firstIndex, secondIndex) => {
 
 }
 
-// const sortAPI = {
-//   bubbleSort(arr, comparation) {
-//     console.log('fgfgfg')
-//     // TODO: допишите функцию сортировки пузырьком
-//     const n = arr.length;
-//    // внешняя итерация по элементам
-//    for (let i = 0; i < n-1; i++) { 
-//        // внутренняя итерация для перестановки элемента в конец массива
-//        for (let j = 0; j < n-1-i; j++) { 
-//            // сравниваем элементы
-//            if (comparation(arr[j]['color'], arr[j+1]['color'])) { 
-//                // делаем обмен элементов
-//                let temp = arr[j+1]; 
-//                arr[j+1] = arr[j]; 
-//                arr[j] = temp; 
-//            }
-//        }
-//    } 
-    
-//   },
 
-//   quickSort(arr, comparation) {
-//     // TODO: допишите функцию быстрой сортировки
-//     var index;
-//     if (arr.length > 1) {
-//         left = typeof left != "number" ? 0 : left;
-//         right = typeof right != "number" ? arr.length - 1 : right;
-//         index = partition(arr, left, right);
-//         if (left < index - 1) {
-//            sortAPI.startSort(quickSort, arr, comparation);
-//             //quickSort(arr, left, index - 1);
-//         }
-//         if (index < right) {
-//             quickSort(arr, index, right);
-//         }
-//     }
-//     return arr;
-//   },
-
-//   // выполняет сортировку и производит замер времени
-//   startSort(sort, arr, comparation) {
-//     const start = new Date().getTime();
-//     sort(arr, comparation);
-//     setTimeout(200)
-//     const end = new Date().getTime();
-//     sortTime = `${end - start} ms`;
-//   },
-// };
 
 // инициализация полей
 sortKindLabel.textContent = sortKind;
